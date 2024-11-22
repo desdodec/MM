@@ -52,18 +52,19 @@ function setup() {
 function draw() {
   background(50, 100, 150);
 
-  // Draw balloons
-  for (let balloon of balloons) {
-    fill(balloon.color);
-    noStroke();
-    ellipse(balloon.x, balloon.y, width * 0.1, height * 0.15); // Scaled for screen size
-    fill(255);
-    rect(balloon.x - 2, balloon.y + height * 0.075, 4, height * 0.02); // Balloon string
-    balloon.y -= 1; // Balloons rise
-    if (balloon.y < -100) {
-      balloon.y = random(height, height + 200); // Reset when offscreen
-    }
+// Draw balloons
+for (let balloon of balloons) {
+  fill(balloon.color);
+  noStroke();
+  ellipse(balloon.x, balloon.y, width * 0.1, height * 0.12); // Adjust height to make the balloon more rounded
+  fill(255);
+  rect(balloon.x - 2, balloon.y + height * 0.06, 4, height * 0.02); // Adjust string position and size
+  balloon.y -= 1; // Balloons rise
+  if (balloon.y < -100) {
+    balloon.y = random(height, height + 200); // Reset when offscreen
   }
+}
+
 
   // Draw confetti
   for (let c of confetti) {
