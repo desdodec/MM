@@ -4,7 +4,7 @@ let texts = [
   "Birthday",
   "Mike",
   "and",
-  "Marine",
+  "Marina",
   "Love",
   "from",
   "Nigel",
