@@ -4,7 +4,7 @@ let texts = [
   "Birthday",
   "Mike",
   "and",
-  "Marina",
+  "Marine",
   "Love",
   "from",
   "Nigel",
@@ -20,7 +20,7 @@ let balloons = [];
 let confetti = [];
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
   textAlign(CENTER, CENTER);
 
   // Initialize positions, velocities, and colors for each text
@@ -57,9 +57,9 @@ function draw() {
   for (let balloon of balloons) {
     fill(balloon.color);
     noStroke();
-    ellipse(balloon.x, balloon.y, 40, 60); // Balloon body
+    ellipse(balloon.x, balloon.y, width * 0.05, height * 0.1); // Balloon body (scaled)
     fill(255);
-    rect(balloon.x - 2, balloon.y + 30, 4, 10); // Balloon string
+    rect(balloon.x - 2, balloon.y + height * 0.05, 4, 10); // Balloon string
     balloon.y -= 1; // Balloons rise
     if (balloon.y < -100) {
       balloon.y = random(height, height + 200); // Reset when offscreen
@@ -83,10 +83,11 @@ function draw() {
     fill(colors[i]);
     noStroke();
 
+    // Scale text sizes for "60th" and others
     if (texts[i] === "60th") {
-      textSize(64); // Make "60th" larger
+      textSize(width * 0.12); // Larger size for "60th"
     } else {
-      textSize(32); // Standard size for other texts
+      textSize(width * 0.06); // Smaller size for other texts
     }
 
     text(texts[i], positions[i].x, positions[i].y);
@@ -102,4 +103,9 @@ function draw() {
       velocities[i].y *= -1;
     }
   }
+}
+
+// Handle window resize for responsiveness
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
