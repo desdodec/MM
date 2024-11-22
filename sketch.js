@@ -15,12 +15,11 @@ let texts = [
 let positions = [];
 let velocities = [];
 let colors = [];
-
 let balloons = [];
 let confetti = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight); // Fullscreen canvas
   textAlign(CENTER, CENTER);
 
   // Initialize positions, velocities, and colors for each text
@@ -44,7 +43,7 @@ function setup() {
     confetti.push({
       x: random(width),
       y: random(height),
-      size: random(5, 10),
+      size: random(width * 0.01, width * 0.02), // Scaled for screen size
       color: color(random(255), random(255), random(255))
     });
   }
@@ -57,9 +56,9 @@ function draw() {
   for (let balloon of balloons) {
     fill(balloon.color);
     noStroke();
-    ellipse(balloon.x, balloon.y, width * 0.05, height * 0.1); // Balloon body (scaled)
+    ellipse(balloon.x, balloon.y, width * 0.1, height * 0.15); // Scaled for screen size
     fill(255);
-    rect(balloon.x - 2, balloon.y + height * 0.05, 4, 10); // Balloon string
+    rect(balloon.x - 2, balloon.y + height * 0.075, 4, height * 0.02); // Balloon string
     balloon.y -= 1; // Balloons rise
     if (balloon.y < -100) {
       balloon.y = random(height, height + 200); // Reset when offscreen
@@ -85,9 +84,9 @@ function draw() {
 
     // Scale text sizes for "60th" and others
     if (texts[i] === "60th") {
-      textSize(width * 0.12); // Larger size for "60th"
+      textSize(width * 0.1); // Larger size for "60th"
     } else {
-      textSize(width * 0.06); // Smaller size for other texts
+      textSize(width * 0.05); // Smaller size for other texts
     }
 
     text(texts[i], positions[i].x, positions[i].y);
